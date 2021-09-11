@@ -1,0 +1,70 @@
+<div style="height: 100vh">
+  <mat-toolbar
+    fxLayoutAlign="center center"
+    style="background-color: darkblue; height: 57px"
+  >
+    <mat-toolbar-row fxLayout>
+      <button
+        fxFlex="10"
+        mat-icon-button
+        (click)="sidenav.toggle()"
+        fxShow="true"
+        fxHide.gt-sm
+        style="margin-right: 8px"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span style="color: white" fxFlex="73">Spawos Project</span>
+      <!-- <span class="example-spacer"></span> -->
+      <div
+        fxFlex="22"
+        fxLayoutAlign="space-between end"
+        fxShow="true"
+        fxHide.lt-md="true"
+      >
+        <a routerLink="/registration" mat-button>
+          <!-- <mat-icon style="margin-right: 5px; color: white"
+            >account_box</mat-icon
+          > -->
+          <span style="color: white; font-size: smaller">Registration</span>
+        </a>
+        <a routerLink="/product-list" mat-button>
+          <!-- <mat-icon style="margin-right: 5px; color: white">list_alt</mat-icon> -->
+          <span style="color: white; font-size: smaller"> Product List</span>
+        </a>
+        <a routerLink="/cart" mat-button>
+          <!-- <mat-icon style="margin-right: 5px; color: white"
+            >add_shopping_cart</mat-icon
+          > -->
+          <span style="color: white; font-size: smaller">Cart</span>
+        </a>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-sidenav-container fxFlexFill fxLayoutAlign="stretch">
+    <mat-sidenav style="background-color: #e3e3e3" #sidenav>
+      <mat-nav-list>
+        <a routerLink="/registration" mat-list-item>
+          <mat-icon style="margin-right: 5px">account_box</mat-icon>
+          Registration
+        </a>
+        <a routerLink="/product-list" mat-list-item>
+          <mat-icon style="margin-right: 5px">list_alt</mat-icon>
+          Product List</a
+        >
+        <a routerLink="/cart" mat-list-item>
+          <mat-icon style="margin-right: 5px">add_shopping_cart</mat-icon>
+          Cart
+        </a>
+
+        <a (click)="sidenav.toggle()" mat-list-item>
+          <mat-icon style="margin-right: 5px">close</mat-icon> Close
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill style="padding: 10px"
+      ><router-outlet></router-outlet
+    ></mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

@@ -1,0 +1,34 @@
+<h3>Product List</h3>
+<div
+  fxLayout
+  fxLayoutAlign="center center"
+  style="padding: 5px; border: outset; border-radius: 10px; height: 80%"
+  *ngIf="productList.length == 0"
+>
+  Loading Data
+</div>
+<div style="padding: 5px" *ngIf="productList.length > 0">
+  <table class="my-table">
+    <thead class="my-table headers">
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody class="my-table body">
+      <tr my-active *ngFor="let item of productList">
+        <td><img [src]="item.image" style="width: 70px" /></td>
+        <td>{{ item.title }}</td>
+        <td>{{ item.price }}</td>
+
+        <td>
+          <button type="button" (click)="onSelect(item)">
+            <mat-icon>remove_red_eye</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

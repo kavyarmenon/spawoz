@@ -1,0 +1,191 @@
+<div fxLayout="column">
+  <h3 style="margin-left: 15px">Registration Form</h3>
+
+  <div
+    fxLayout="column"
+    fxLayoutGap="15px"
+    fxLayoutAlign="space-between stretch"
+  >
+    <form
+      fxLayout="column"
+      fxLayoutGap="25px"
+      [formGroup]="regForm"
+      style="height: 100%; padding: 20px; width: 97%"
+    >
+      <div
+        fxLayout="column"
+        fxLayoutGap="10px"
+        style="padding: 15px; border: inset; border-radius: 10px"
+      >
+        <ng-container slot="title"> Basic Info </ng-container>
+
+        <div style="margin-top: 15px" fxLayout fxLayoutGap="10px">
+          <mat-form-field fxFlex appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" maxlength="100" />
+            <!-- <mat-error *ngIf="regForm.get('name').errors.required">
+              Name is required
+            </mat-error> -->
+          </mat-form-field>
+
+          <mat-form-field fxFlex appearance="outline">
+            <mat-label>Mobile Number</mat-label>
+            <ngx-mat-intl-tel-input
+              [preferredCountries]="['in', 'ae']"
+              [enablePlaceholder]="true"
+              [enableSearch]="true"
+              formControlName="mobileNumber"
+            ></ngx-mat-intl-tel-input>
+            <!-- <mat-error *ngIf="regForm.get('mobileNumber').errors.required"
+              >Mobile Number is required.</mat-error
+            > -->
+          </mat-form-field>
+
+          <mat-form-field fxFlex appearance="outline">
+            <mat-label>Email</mat-label>
+            <input
+              type="email"
+              matInput
+              formControlName="email"
+              maxlength="100"
+            />
+            <!-- <mat-error *ngIf="regForm.get('email').errors.required">
+              Valid Email is required
+            </mat-error> -->
+          </mat-form-field>
+        </div>
+      </div>
+      <div
+        fxLayout="column"
+        fxLayoutGap="10px"
+        style="padding: 15px; border: inset; border-radius: 10px"
+      >
+        <div>
+          <ng-container slot="title"> Billing Address</ng-container>
+
+          <div fxLayout style="margin-top: 15px" fxLayoutGap="10px">
+            <mat-form-field fxFlex appearance="outline">
+              <mat-label>Address</mat-label>
+              <input matInput type="text" formControlName="address" />
+              <!-- <mat-error *ngIf="regForm.get('address').errors.required">
+                Address is required
+              </mat-error> -->
+            </mat-form-field>
+            <mat-form-field fxFlex appearance="outline">
+              <mat-label>Phone Number</mat-label>
+              <ngx-mat-intl-tel-input
+                [preferredCountries]="['in', 'ae']"
+                [enablePlaceholder]="true"
+                [enableSearch]="true"
+                formControlName="phone"
+              ></ngx-mat-intl-tel-input>
+              <!-- <mat-error *ngIf="regForm.get('mobileNumber').errors.required"
+                >Mobile Number is required.</mat-error
+              > -->
+            </mat-form-field>
+
+            <mat-form-field fxFlex appearance="outline">
+              <mat-label>Pincode</mat-label>
+              <input matInput formControlName="pincode" maxlength="6" />
+              <!-- <mat-error *ngIf="regForm.get('pincode').errors.required">
+                Pincode Number is required
+              </mat-error> -->
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div
+        fxLayout="column"
+        style="padding: 15px; border: inset; border-radius: 10px"
+        formArrayName="shippingAddress"
+      >
+        <div fxLayoutAlign="space-between" slot="title">
+          Shipping Address
+          <span fxLayoutAlign="end">
+            <button
+              style="
+                margin-right: 5px;
+                color: white;
+                background-color: darkslateblue;
+              "
+              (click)="addItem()"
+            >
+              <mat-icon>add</mat-icon>
+            </button>
+          </span>
+        </div>
+        <div
+          *ngFor="
+            let a of shippingAddress.controls;
+            let shippingAddressIndex = index
+          "
+        >
+          <div [formGroupName]="shippingAddressIndex">
+            <div fxLayout fxLayoutGap="10px" style="margin-top: 20px">
+              <mat-form-field fxFlex appearance="outline">
+                <mat-label>Address</mat-label>
+                <input matInput type="text" formControlName="shipaddress" />
+                <!-- <mat-error *ngIf="!regForm.get('address').valid">
+                  Address Number is required
+                </mat-error> -->
+              </mat-form-field>
+              <mat-form-field fxFlex appearance="outline">
+                <mat-label>Phone Number</mat-label>
+                <ngx-mat-intl-tel-input
+                  [preferredCountries]="['in', 'ae']"
+                  [enablePlaceholder]="true"
+                  [enableSearch]="true"
+                  formControlName="shipphone"
+                ></ngx-mat-intl-tel-input>
+                <!-- <mat-error *ngIf="regForm.get('mobileNumber').errors.required"
+                  >Mobile Number is required.</mat-error
+                > -->
+              </mat-form-field>
+
+              <mat-form-field fxFlex appearance="outline">
+                <mat-label>Pincode</mat-label>
+                <input matInput formControlName="shippincode" maxlength="6" />
+                <!-- <mat-error *ngIf="!regForm.get('pincode').valid">
+                  Pincode Number is required
+                </mat-error> -->
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxLayoutAlign="center center">
+        <button
+          mat-raised-button
+          color="primary"
+          style="
+            width: 140px;
+            color: white;
+            height: 40px;
+            background-color: darkblue;
+            font-weight: 600;
+          "
+          type="submit"
+          (click)="saveUser()"
+        >
+          Save
+        </button>
+
+        <button
+          mat-raised-button
+          color="accent"
+          style="
+            margin-left: 8px;
+            width: 140px;
+            color: white;
+            height: 40px;
+            background-color: darkred;
+            font-weight: 600;
+          "
+          (click)="back()"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

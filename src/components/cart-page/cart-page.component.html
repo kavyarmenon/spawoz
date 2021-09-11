@@ -1,0 +1,27 @@
+<h3>Cart Items</h3>
+<div
+  fxLayout
+  fxLayoutAlign="center center"
+  style="padding: 5px; border: outset; border-radius: 10px; height: 80%"
+  *ngIf="productList.length == 0"
+>
+  No Data Found
+</div>
+<div fxLayout style="padding: 5px" *ngIf="productList.length > 0">
+  <table class="my-table">
+    <thead class="my-table headers">
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody class="my-table body">
+      <tr my-active *ngFor="let item of productList">
+        <td><img [src]="item.image" style="width: 70px" /></td>
+        <td>{{ item.title }}</td>
+        <td>{{ item.price }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
